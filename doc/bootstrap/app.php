@@ -8,7 +8,10 @@ return Application::configure(basePath: dirname(__DIR__))
     ->withRouting(
         web: __DIR__ . '/../routes/web.php',
         api: __DIR__ . '/../routes/api.php',
-        apiPrefix: 'api',
+        // apiPrefix: 'api',
+        then: function() {
+            Route::middleware('api')->prefix('webhooks')->name('webhooks.')->group(base_path('routes/webhooks.php'));
+        },
         commands: __DIR__ . '/../routes/console.php',
         health: '/up',
     )
